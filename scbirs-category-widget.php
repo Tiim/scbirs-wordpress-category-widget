@@ -97,7 +97,7 @@ class scbirs_thumb_category_widget extends WP_Widget {
 		if( count( $posts ) && has_post_thumbnail( $post->ID )) {
 
 			$returnThis .= '<a class="'.__CLASS__.'-thumb" href="'.get_permalink( $post->ID ).'">';
-      $returnThis .= get_the_post_thumbnail( $post->ID );
+      $returnThis .= get_the_post_thumbnail( $post->ID, "medium" );
       $returnThis .= '</a>'."\r\n";
     }
     return $returnThis;
