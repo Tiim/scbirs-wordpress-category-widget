@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: ScBirs - Category Widget Plugin With Thumbnail
+Plugin Name: Category Widget With Thumbnail
 Description: Displays the thumbnail of the most recent post and a list of recent posts in a specified category.
 */
 
@@ -8,13 +8,13 @@ if ( !defined('ABSPATH') ) {
     die('-1');
 }
 
-class scbirs_thumb_category_widget extends WP_Widget {
+class tiim_thumb_category_widget extends WP_Widget {
 
     public function __construct() {
         parent::__construct(
-            'scbirs_thumb_category_widget',
-            'ScBirs Thumb Category Widget',
-            array( 'description' => __( 'ScBirs - A widget to display the most recent posts and a header thumbnail from a single category' ) )
+            'tiim_thumb_category_widget',
+            'Tiim Thumb Category Widget',
+            array( 'description' => __( 'A widget to display the most recent posts and a header thumbnail from a single category' ) )
         );
     }
 
@@ -68,7 +68,7 @@ class scbirs_thumb_category_widget extends WP_Widget {
         echo $before_widget;
     ?>
     <style type="text/css">
-        .scbirs_thumb_category_widget-thumb > img {
+        .tiim_thumb_category_widget-thumb > img {
             width: 100%;
             height: auto;
             padding: 1px;
@@ -121,5 +121,5 @@ class scbirs_thumb_category_widget extends WP_Widget {
     }
 
 }
-add_action( 'widgets_init', create_function( '', 'register_widget( "scbirs_thumb_category_widget" );' ) );
+add_action( 'widgets_init', create_function( '', 'register_widget( "tiim_thumb_category_widget" );' ) );
 ?>
