@@ -1,0 +1,18 @@
+before_script:
+  - REPO="$(echo $TRAVIS_REPO_SLUG | cut -d'/' -f2)"
+
+script: 
+  - echo Generating zip file for plugin $REPO
+  - mkdir $REPO
+  - rsync -Rr . ./$REPO/
+  - zip -r $TRAVIS_BUILD_DIR/$REPO.zip $REPO -x '$REPO/$REPO/*' '$REPO/.git/*'
+  - unzip -l $REPO.zip
+
+deploy:
+  provider: releases
+  api_key:
+    secure: Fm8KAdxN7s1wjNk0ifWlThOpAoBKrXSLmEftWf69lSPuv1g6NLfR5eXednsx+Kz7+SIoCYtiTIUiKtyc3bqIIHyFjKmfpAoYTHR82oWmwypH7K2YTJjSzV81Ku/fXvf89zeKcXR9u5a1O6hX9Ysq2tfChucUDMzDOjrWuCaF25AGhsm/tfE2s9JOoeYxpf73jL9qYacx2UWZWGNhWPezk1xpTsGQtL2Id7oaOaLDvysveozOCzGD7gJy/nw/921rCdxqwa/XsfsVLr7jmS5H6SC4HfRsbHrAUI+dLLB4vvpdrL/Iq0FYx2VsSP42FTijcrOGNxbRch0hRw1IJrtIaKOHIZqDTfgX4gj+aoik76CfYj6liEMD1ESjPr8cU0uiVf87VZf2LfdrIzTIfDB+M9FeVV2hzLPgisJsaFNCd6gVJC0Sv8+BWgcJjCM5/6OdRKeZS4xh9vYq7xYkYO1p1997VVFsU8OUPbtZZjBzDg3XYa49Sp9NeFu7buRCO9fGcU5wxX1AyrmYbKYGwq1owFOMpHi5CLLn6A9M8bst5Gsq4Eco2F5lhe1HcTqd1/uGvE0HzF36s7f3/Y5+z5Ek7kG9D4vOwDfpkEI0+uo/T/htaYjPYyTxRirN7XLzSc7gc4mfxM0WmYYpXEW4KVno28nsGo27Y1zm4uWvQl/FNS8=
+  file: "$TRAVIS_BUILD_DIR/$REPO.zip"
+  skip_cleanup: true
+  on:
+    tags: true
