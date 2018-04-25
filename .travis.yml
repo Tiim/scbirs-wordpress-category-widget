@@ -5,7 +5,8 @@ script:
   - echo Generating zip file for plugin $REPO
   - mkdir $REPO
   - rsync -Rr . ./$REPO/
-  - zip -r $TRAVIS_BUILD_DIR/$REPO.zip $REPO -x '$REPO/$REPO/*' -x '$REPO/.git/*'
+  - rm -rf ./$REPO/$REPO ./$REPO/.git
+  - zip -r $TRAVIS_BUILD_DIR/$REPO.zip $REPO
   - unzip -l $REPO.zip
 
 deploy:
